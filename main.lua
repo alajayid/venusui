@@ -1076,7 +1076,7 @@ end
 
 function utility.rgba(r, g, b, alpha)
     local rgb = Color3.fromRGB(r, g, b)
-    local mt = table.clone(getrawmetatable(rgb))
+    local mt = table.clone(getmetatable(rgb))
     
     setreadonly(mt, false)
     local old = mt.__index
@@ -1089,7 +1089,7 @@ function utility.rgba(r, g, b, alpha)
         return old(self, key)
     end)
     
-    setrawmetatable(rgb, mt)
+    setmetatable(rgb, mt)
     
     return rgb
 end
